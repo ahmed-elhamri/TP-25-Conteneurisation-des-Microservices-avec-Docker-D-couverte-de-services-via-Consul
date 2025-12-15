@@ -5,9 +5,11 @@ import com.example.client.repositories.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ClientApplication {
 
     public static void main(String[] args) {
@@ -20,6 +22,22 @@ public class ClientApplication {
             clientRepository.save(new Client(Long.parseLong("1"), "Amine SAFI", Float.parseFloat("23")));
             clientRepository.save(new Client(Long.parseLong("2"), "Amal ALAOUI", Float.parseFloat("22")));
             clientRepository.save(new Client(Long.parseLong("3"), "Samir RAMI", Float.parseFloat("22")));
+        };
+    }
+    @Bean
+    CommandLineRunner initDatabase(ClientRepository clientRepository) {
+        return args -> {
+
+            // Clear DB (optional for development)
+            clientRepository.deleteAll();
+
+            clientRepository.save(new Client(null, "Ahmed", 25f));
+            clientRepository.save(new Client(null, "Fatima", 30f));
+            clientRepository.save(new Client(null, "Youssef", 22f));
+            clientRepository.save(new Client(null, "Salma", 28f));
+            clientRepository.save(new Client(null, "Omar", 35f));
+
+            System.out.println("✔ Fake dataset loaded into H2 database!");
         };
     }
 }
