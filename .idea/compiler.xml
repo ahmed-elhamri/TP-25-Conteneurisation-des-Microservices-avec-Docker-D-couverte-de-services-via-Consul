@@ -7,12 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="servereureka" />
         <module name="client" />
         <module name="car" />
         <module name="gateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="servereureka" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
